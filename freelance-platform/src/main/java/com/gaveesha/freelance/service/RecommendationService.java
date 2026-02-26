@@ -23,11 +23,10 @@ public class RecommendationService {
     }
 
     public List<FinalRecommendationResponse> getRecommendations(String jobDescription) {
-
-        // 1️⃣ Get all freelancers from DB
+        // Get all freelancers from DB
         List<Freelancer> freelancers = freelancerRepository.findAll();
 
-        // 2️⃣ Prepare list for Flask
+        // Prepare list for Flask
         List<Map<String, Object>> freelancerList = new ArrayList<>();
 
         for (Freelancer f : freelancers) {
@@ -37,19 +36,19 @@ public class RecommendationService {
             freelancerList.add(map);
         }
 
-        // 3️⃣ Prepare Flask request
+        //Prepare Flask request
         Map<String, Object> requestBody = new HashMap<>();
         requestBody.put("job_description", jobDescription);
         requestBody.put("freelancers", freelancerList);
 
-        // 4️⃣ Call Flask
+        // Call Flask
         RecommendationResponse[] flaskResults = restTemplate.postForObject(
                 FLASK_URL,
                 requestBody,
                 RecommendationResponse[].class
         );
 
-        // 5️⃣ Convert to enriched response
+        // Convert to enriched response
         List<FinalRecommendationResponse> finalResults = new ArrayList<>();
 
         if (flaskResults != null) {
