@@ -1,0 +1,312 @@
+/* ===== FreelancerPage.css ===== */
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap');
+
+.freelancer-page {
+    font-family: 'DM Sans', sans-serif;
+    min-height: 100vh;
+    background-color: #f3f4f6;
+    padding: 48px 24px;
+    color: #111827;
+}
+
+/* ── Page Header ── */
+.freelancer-page__header {
+    max-width: 680px;
+    margin: 0 auto 32px;
+}
+
+.freelancer-page__title {
+    font-size: 28px;
+    font-weight: 700;
+    margin: 0 0 6px;
+    color: #0f172a;
+}
+
+.freelancer-page__subtitle {
+    font-size: 14px;
+    color: #6b7280;
+    margin: 0;
+}
+
+/* ── Card shared ── */
+.freelancer-card {
+    background: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.07);
+    max-width: 680px;
+    margin: 0 auto 24px;
+    padding: 28px 32px;
+}
+
+/* ── Add Freelancer Form ── */
+.freelancer-form__heading {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #0f172a;
+    margin: 0 0 24px;
+}
+
+.freelancer-form__heading-icon {
+    width: 22px;
+    height: 22px;
+    color: #2563eb;
+    flex-shrink: 0;
+}
+
+.freelancer-form__fields {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 16px;
+}
+
+.freelancer-form__field {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.freelancer-form__label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    color: #374151;
+    text-transform: uppercase;
+}
+
+.freelancer-form__input {
+    padding: 10px 14px;
+    border: 1.5px solid #e5e7eb;
+    border-radius: 8px;
+    font-size: 14px;
+    font-family: inherit;
+    color: #111827;
+    background: #fff;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    outline: none;
+}
+
+.freelancer-form__input::placeholder {
+    color: #9ca3af;
+}
+
+.freelancer-form__input:focus {
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+}
+
+.freelancer-form__submit {
+    width: 100%;
+    padding: 13px;
+    background-color: #1d3fbb;
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: 600;
+    font-family: inherit;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: background-color 0.2s, transform 0.1s;
+}
+
+.freelancer-form__submit:hover {
+    background-color: #1e40af;
+}
+
+.freelancer-form__submit:active {
+    transform: scale(0.98);
+}
+
+/* ── Talent Pool List ── */
+.talent-pool__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 24px;
+}
+
+.talent-pool__title {
+    font-size: 16px;
+    font-weight: 600;
+    color: #0f172a;
+    margin: 0;
+}
+
+.talent-pool__badge {
+    background-color: #eff6ff;
+    color: #2563eb;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 4px 12px;
+    border-radius: 20px;
+}
+
+.talent-pool__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+.talent-pool__item {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 16px 0;
+    border-bottom: 1px solid #f3f4f6;
+    transition: background-color 0.15s;
+}
+
+.talent-pool__item:last-child {
+    border-bottom: none;
+}
+
+/* Avatar */
+.talent-pool__avatar {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    font-weight: 700;
+    color: #fff;
+    flex-shrink: 0;
+    letter-spacing: 0.03em;
+}
+
+.avatar--blue   { background-color: #93c5fd; color: #1e3a8a; }
+.avatar--indigo { background-color: #a5b4fc; color: #312e81; }
+.avatar--green  { background-color: #6ee7b7; color: #065f46; }
+.avatar--orange { background-color: #fcd34d; color: #78350f; }
+.avatar--purple { background-color: #d8b4fe; color: #4c1d95; }
+.avatar--pink   { background-color: #fbcfe8; color: #831843; }
+
+/* Info */
+.talent-pool__info {
+    flex: 1;
+}
+
+.talent-pool__name {
+    font-size: 15px;
+    font-weight: 600;
+    color: #111827;
+    margin: 0 0 6px;
+}
+
+.talent-pool__skills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+.skill-tag {
+    background-color: #f3f4f6;
+    color: #374151;
+    font-size: 12px;
+    font-weight: 500;
+    padding: 3px 10px;
+    border-radius: 6px;
+}
+
+/* Delete button */
+.talent-pool__delete {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 6px;
+    border-radius: 8px;
+    color: #ef4444;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.15s;
+    flex-shrink: 0;
+}
+
+.talent-pool__delete:hover {
+    background-color: #fee2e2;
+}
+
+.talent-pool__delete svg {
+    width: 18px;
+    height: 18px;
+}
+
+/* View all link */
+.talent-pool__view-all {
+    display: block;
+    text-align: center;
+    margin-top: 20px;
+    color: #2563eb;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    background: none;
+    border: none;
+    font-family: inherit;
+    text-decoration: none;
+}
+
+.talent-pool__view-all:hover {
+    text-decoration: underline;
+}
+
+/* ── Stats Row ── */
+.freelancer-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    max-width: 680px;
+    margin: 0 auto;
+}
+
+.stat-card {
+    background: #fff;
+    border-radius: 14px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.07);
+    padding: 20px 24px;
+}
+
+.stat-card__label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #6b7280;
+    margin-bottom: 8px;
+}
+
+.stat-card__value {
+    font-size: 28px;
+    font-weight: 700;
+    color: #0f172a;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.stat-card__star {
+    color: #f59e0b;
+    font-size: 20px;
+}
+
+/* ── Responsive ── */
+@media (max-width: 600px) {
+    .freelancer-form__fields {
+        grid-template-columns: 1fr;
+    }
+    .freelancer-stats {
+        grid-template-columns: 1fr;
+    }
+}
