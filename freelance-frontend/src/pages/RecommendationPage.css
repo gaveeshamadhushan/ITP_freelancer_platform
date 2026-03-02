@@ -300,6 +300,37 @@
     background-size: 200% 100%;
     animation: shimmer 1.4s infinite;
 }
+.button-container{
+    flex-shrink: 0;
+    text-align: right;
+}
+/* Hire Now button */
+.freelancer-mini-card__hire {
+    padding: 7px 14px;
+    font-size: 12px;
+    margin-left: auto; /* push right */
+}
+
+.freelancer-mini-card__hire:hover {
+    background: #1d3fbb;
+    color: #fff;
+    border-color: #1d3fbb;
+}
+
+.freelancer-mini-card__hire:active {
+    transform: scale(0.97);
+}
+
+/* First card's first freelancer: filled blue (like screenshot) */
+.freelancer-mini-card--primary .freelancer-mini-card__hire {
+    background: #1d3fbb;
+    color: #fff;
+    border-color: #1d3fbb;
+}
+
+.freelancer-mini-card--primary .freelancer-mini-card__hire:hover {
+    background: #1e40af;
+}
 
 .skeleton-line--short  { width: 40%; }
 .skeleton-line--medium { width: 65%; }
@@ -484,7 +515,7 @@
     display: flex;
     align-items: center;
     gap: 10px;
-    flex-wrap: wrap;
+    justify-content: space-between;
     margin-top: 2px;
 }
 

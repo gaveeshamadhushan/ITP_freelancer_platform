@@ -256,6 +256,10 @@ function RecommendationPage() {
                                                         </span>
                                                     )}
                                                 </div>
+                                                {/* RIGHT SIDE */}
+                                                <button className="freelancer-mini-card__hire">
+                                                    Hire Now
+                                                </button>
                                             </div>
 
                                         </div>
