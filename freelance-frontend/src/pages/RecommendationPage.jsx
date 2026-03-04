@@ -88,12 +88,14 @@ function RecommendationPage() {
     return (
         <div className="recommendation-page">
 
-            {/* ── Page Header ── */}
+            {/* ── Hero Header ── */}
             <div className="recommendation-page__header">
-                <h2 className="recommendation-page__title">Find Freelancers</h2>
+                <h2 className="recommendation-page__title">
+                    Find Top Freelancers Instantly
+                </h2>
                 <p className="recommendation-page__subtitle">
-                    Our AI-driven engine matches your project requirements with the
-                    top 1% of specialized talent instantly.
+                    AI-powered intelligent matching for your most critical roles.
+                    Build your dream team in seconds.
                 </p>
             </div>
 
@@ -101,49 +103,55 @@ function RecommendationPage() {
             <div className="recommendation-search-card">
 
                 <div className="recommendation-search-card__heading">
-                    <div className="recommendation-search-card__icon">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-                            <polyline points="14 2 14 8 20 8"/>
-                            <line x1="16" y1="13" x2="8" y2="13"/>
-                            <line x1="16" y1="17" x2="8" y2="17"/>
-                            <line x1="10" y1="9" x2="8" y2="9"/>
-                        </svg>
-                    </div>
-
                     <div className="recommendation-search-card__heading-text">
                         <h3>Project Requirements</h3>
-                        <p>Be specific about the tech stack, duration, and core responsibilities for better accuracy.</p>
+                        <p>Describe your project and our AI will suggest the best technical matches from our global network.</p>
+                    </div>
+
+                    {/* AI badge (top-right, purely visual) */}
+                    <div className="recommendation-search-card__icon">
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">
+                            <circle cx="12" cy="12" r="10"/>
+                            <circle cx="12" cy="12" r="4"/>
+                        </svg>
+                        AI-POWERED ANALYSIS
                     </div>
                 </div>
 
                 <textarea
                     className="recommendation-search-card__textarea"
                     rows="4"
-                    placeholder="e.g. We are looking for a Senior React Developer..."
+                    placeholder="Example: I need a Senior React Developer to build a fintech dashboard with real-time data visualization using D3.js and Tailwind CSS..."
                     value={jobDescription}
                     onChange={(e) => setJobDescription(e.target.value)}
                 />
 
                 <div className="recommendation-search-card__footer">
-                    <span className="recommendation-search-card__powered">
-                        Analysis powered by GPT-4 Turbo
-                    </span>
+
+                    {/* Avatar stack + label */}
+                    <div className="recommendation-search-card__powered">
+                        <div className="avatar-stack">
+                            <div className="avatar-stack__item avatar-stack__item--a">A</div>
+                            <div className="avatar-stack__item avatar-stack__item--b">S</div>
+                            <div className="avatar-stack__item avatar-stack__item--c">M</div>
+                        </div>
+                        <span className="powered-label">Matching against 500+ verified experts</span>
+                    </div>
+
                     <button
                         className="recommendation-search-card__submit"
                         onClick={findFreelancers}
                         disabled={loading}
                     >
-                        {/* Icon: target when idle, mini spinner when loading */}
+                        {/* Icon: spinner when loading, arrow when idle */}
                         {loading ? (
                             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" style={{ animation: "spin 0.75s linear infinite" }}>
                                 <path d="M21 12a9 9 0 1 1-6.219-8.56"/>
                             </svg>
                         ) : (
-                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
-                                <circle cx="12" cy="12" r="10"/>
-                                <circle cx="12" cy="12" r="6"/>
-                                <circle cx="12" cy="12" r="2"/>
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">
+                                <line x1="5" y1="12" x2="19" y2="12"/>
+                                <polyline points="12 5 19 12 12 19"/>
                             </svg>
                         )}
                         {loading ? "Finding..." : "Find Best Matches"}
@@ -167,10 +175,8 @@ function RecommendationPage() {
             {loading && (
                 <>
                     <div className="recommendation-loading">
-                        {/* Double-ring spinner */}
                         <div className="recommendation-loading__spinner" />
                         <p className="recommendation-loading__text">Matching talent to your requirements…</p>
-                        {/* Bouncing dots */}
                         <div className="recommendation-loading__dots">
                             <span className="recommendation-loading__dot" />
                             <span className="recommendation-loading__dot" />
@@ -178,7 +184,6 @@ function RecommendationPage() {
                         </div>
                     </div>
 
-                    {/* Skeleton placeholder cards */}
                     <div className="recommendation-skeleton">
                         <SkeletonCard />
                         <SkeletonCard />
@@ -213,24 +218,24 @@ function RecommendationPage() {
 
                             return (
                                 <li key={index} className="result-card">
+
+                                    {/* Large avatar */}
+                                    <div className="result-card__avatar">
+                                        {getInitials(r.name)}
+                                    </div>
+
+                                    {/* Middle: name, role, skills */}
                                     <div className="result-card__top">
-
-                                        {/* Avatar */}
-                                        <div className="result-card__avatar">
-                                            {getInitials(r.name)}
-                                        </div>
-
                                         <div className="result-card__info">
-                                            <div className="result-card__name-row">
-                                                <div>
-                                                    <p className="result-card__name">{r.name}</p>
-                                                    <p className="result-card__role">{r.skills}</p>
-                                                </div>
 
-                                                {/* Match badge + animated bar */}
+                                            <div className="result-card__name-row">
+                                                <p className="result-card__name">{r.name}</p>
+
+                                                {/* Match badge + bar */}
                                                 <div className="result-card__match-badge">
                                                     <span className="result-card__match-label">
-                                                        {r.matchPercentage}% MATCH
+                                                        {r.matchPercentage}% AI MATCH
+                                                        <span className="bolt">⚡</span>
                                                     </span>
                                                     <div className="result-card__match-bar-track">
                                                         <div
@@ -241,7 +246,9 @@ function RecommendationPage() {
                                                 </div>
                                             </div>
 
-                                            {/* Status dot + skill tags */}
+                                            <p className="result-card__role">{r.skills}</p>
+
+                                            {/* Skills + status dot */}
                                             <div className="result-card__bottom">
                                                 <span className={`result-card__status-dot ${getStatusDotClass(r.matchPercentage)}`} />
                                                 <div className="result-card__skills">
@@ -256,18 +263,33 @@ function RecommendationPage() {
                                                         </span>
                                                     )}
                                                 </div>
-                                                {/* RIGHT SIDE */}
-                                                <button className="freelancer-mini-card__hire">
-                                                    Hire Now
-                                                </button>
                                             </div>
 
                                         </div>
                                     </div>
+
+                                    {/* Right: action buttons */}
+                                    <div className="result-card__actions">
+                                        <button className="result-card__btn-hire">Hire Now</button>
+                                        <button className="result-card__btn-view">View Profile</button>
+                                    </div>
+
                                 </li>
                             );
                         })}
                     </ul>
+
+                    {/* Load more */}
+                    <div className="recommendation-load-more">
+                        <button className="recommendation-load-more__btn">
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+                                <polyline points="1 4 1 10 7 10"/>
+                                <path d="M3.51 15a9 9 0 1 0 .49-3.51"/>
+                            </svg>
+                            Load More Talent
+                        </button>
+                    </div>
+
                 </div>
             )}
 
