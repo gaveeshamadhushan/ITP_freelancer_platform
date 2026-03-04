@@ -26,6 +26,8 @@ function truncate(text = "", maxLen = 220) {
 function FreelancerMiniCard({ freelancer, primary }) {
     return (
         <div className={`freelancer-mini-card${primary ? " freelancer-mini-card--primary" : ""}`}>
+
+            {/* Top: avatar + name + MATCH badge */}
             <div className="freelancer-mini-card__top">
                 <div className="freelancer-mini-card__avatar">
                     {getInitials(freelancer.name)}
@@ -34,22 +36,33 @@ function FreelancerMiniCard({ freelancer, primary }) {
                     <p className="freelancer-mini-card__name">{freelancer.name}</p>
                     <p className="freelancer-mini-card__role">{freelancer.skills}</p>
                 </div>
+                {/* Green MATCH ⚡ badge */}
                 <span className="freelancer-mini-card__match">
-                    {freelancer.matchPercentage}% Match
+                    MATCH ⚡
                 </span>
             </div>
 
-            {/* Animated match bar */}
+            {/* ACCURACY label + value row */}
+            <div className="freelancer-mini-card__accuracy-row">
+                <span className="freelancer-mini-card__accuracy-label">Accuracy</span>
+                <span className="freelancer-mini-card__accuracy-value">{freelancer.matchPercentage}%</span>
+            </div>
+
+            {/* Animated green accuracy bar */}
             <div className="freelancer-mini-card__bar-track">
                 <div
                     className="freelancer-mini-card__bar-fill"
                     style={{ "--target-width": `${freelancer.matchPercentage}%` }}
                 />
             </div>
+            <div>
+                {/* Hire Now — full width blue */}
+                <button className="freelancer-mini-card__hire">
+                    Hire Now
+                </button>
+            </div>
 
-            <button className="freelancer-mini-card__hire">
-                Hire Now
-            </button>
+
         </div>
     );
 }
@@ -61,13 +74,16 @@ function HistoryCard({ item, index, onDelete }) {
 
     return (
         <div className="history-card">
+
             {/* Top row */}
             <div className="history-card__top">
                 <div className="history-card__meta">
                     <span className="history-card__badge">
                         AI SEARCH #{item.id || String(1000 + index).padStart(4, "0")}
                     </span>
-                    <h3 className="history-card__title">{item.title || item.jobDescription?.slice(0, 60) + "…"}</h3>
+                    <h3 className="history-card__title">
+                        {item.title || item.jobDescription?.slice(0, 60) + "…"}
+                    </h3>
                     <div className="history-card__info-row">
                         {/* Date */}
                         <span className="history-card__info-item">
@@ -123,7 +139,7 @@ function HistoryCard({ item, index, onDelete }) {
             </p>
 
             {/* Recommendations */}
-            {item.recommendations  && item.recommendations.length > 0 && (
+            {item.recommendations && item.recommendations.length > 0 && (
                 <>
                     <hr className="history-card__divider" />
                     <p className="history-card__rec-label">Top AI Recommendations</p>
