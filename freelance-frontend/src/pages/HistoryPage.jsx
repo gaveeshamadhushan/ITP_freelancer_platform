@@ -280,7 +280,7 @@ function HistoryPage({ onNewSearch }) {
             )}
 
             <footer className="history-footer">
-                © 2024 FreelanceAI. Matching you with brilliance.
+                © 2026 FreelanceAI. Matching you with brilliance.
             </footer>
         </div>
     );

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import "./RecommendationPage.css";
+import HistoryPage from "./HistoryPage.jsx";
 
 // Helper: initials from name
 function getInitials(name = "") {
@@ -42,7 +43,7 @@ function SkeletonCard() {
     );
 }
 
-function RecommendationPage() {
+function RecommendationPage({onViewHistory}) {
 
     const [jobDescription, setJobDescription] = useState("");
     const [results, setResults] = useState([]);
@@ -289,12 +290,18 @@ function RecommendationPage() {
                             Load More Talent
                         </button>
                     </div>
-
                 </div>
             )}
-
+            <div className="recommendation-history">
+                <button
+                    className="recommendation-history-btn"
+                    onClick={onViewHistory}
+                >
+                    Search History
+                </button>
+            </div>
             <footer className="recommendation-footer">
-                © 2024 FreelanceAI. Matching you with brilliance.
+                © 2026 FreelanceAI. Matching you with brilliance.
             </footer>
 
         </div>
