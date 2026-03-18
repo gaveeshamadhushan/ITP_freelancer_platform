@@ -23,7 +23,7 @@ function truncate(text = "", maxLen = 220) {
 }
 
 /* ── Freelancer mini card ── */
-function FreelancerMiniCard({ freelancer, primary }) {
+function FreelancerMiniCard({ freelancer, primary, onHire }) {
     return (
         <div className={`freelancer-mini-card${primary ? " freelancer-mini-card--primary" : ""}`}>
 
@@ -55,20 +55,17 @@ function FreelancerMiniCard({ freelancer, primary }) {
                     style={{ "--target-width": `${freelancer.matchPercentage}%` }}
                 />
             </div>
-            <div>
-                {/* Hire Now — full width blue */}
-                <button className="freelancer-mini-card__hire">
-                    Hire Now
-                </button>
-            </div>
 
-
+            {/* Hire Now — full width blue */}
+            <button className="freelancer-mini-card__hire" onClick={() => onHire && onHire(freelancer)}>
+                Hire Now
+            </button>
         </div>
     );
 }
 
 /* ── Single history card ── */
-function HistoryCard({ item, index, onDelete }) {
+function HistoryCard({ item, index, onDelete, onHire }) {
     const [expanded, setExpanded] = useState(false);
     const { text, truncated } = truncate(item.jobDescription || "");
 
@@ -149,6 +146,7 @@ function HistoryCard({ item, index, onDelete }) {
                                 key={f.id || i}
                                 freelancer={f}
                                 primary={i === 0}
+                                onHire={onHire}
                             />
                         ))}
                     </div>
@@ -161,7 +159,7 @@ function HistoryCard({ item, index, onDelete }) {
 /* ══════════════════════════════════
    MAIN PAGE
 ══════════════════════════════════ */
-function HistoryPage({ onNewSearch }) {
+function HistoryPage({ onNewSearch, onHire }) {
     const [history, setHistory] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState("");
@@ -274,6 +272,7 @@ function HistoryPage({ onNewSearch }) {
                             item={item}
                             index={index}
                             onDelete={deleteHistory}
+                            onHire={onHire}
                         />
                     ))}
                 </div>
