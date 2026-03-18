@@ -43,7 +43,7 @@ function SkeletonCard() {
     );
 }
 
-function RecommendationPage({onViewHistory}) {
+function RecommendationPage({onViewHistory, onHire}) {
 
     const [jobDescription, setJobDescription] = useState("");
     const [results, setResults] = useState([]);
