@@ -18,7 +18,7 @@ const DELIVERABLES = [
 const DEFAULT_MILESTONE = { title: "", description: "", dueDate: "" };
 
 // ── HireFreelancer Page ───────────────
-function HireFreelancer({ freelancer, onBack }) {
+function HireFreelancer({ freelancer, onBack, onViewProfile  }) {
     /*
       freelancer prop shape (passed from parent when clicking "Hire Now"):
       {
@@ -172,7 +172,7 @@ function HireFreelancer({ freelancer, onBack }) {
                                 </span>
                             </div>
                         </div>
-                        <button className="hire-freelancer-card__view-btn">
+                        <button className="hire-freelancer-card__view-btn" onClick={() => onViewProfile && onViewProfile(freelancer)}>
                             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
                                 <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
                                 <circle cx="12" cy="12" r="3"/>

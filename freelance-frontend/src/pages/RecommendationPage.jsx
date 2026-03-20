@@ -43,7 +43,7 @@ function SkeletonCard() {
     );
 }
 
-function RecommendationPage({onViewHistory, onHire}) {
+function RecommendationPage({onViewHistory, onHire, onViewProfile }) {
 
     const [jobDescription, setJobDescription] = useState("");
     const [results, setResults] = useState([]);
@@ -271,8 +271,8 @@ function RecommendationPage({onViewHistory, onHire}) {
 
                                     {/* Right: action buttons */}
                                     <div className="result-card__actions">
-                                        <button className="result-card__btn-hire">Hire Now</button>
-                                        <button className="result-card__btn-view">View Profile</button>
+                                        <button className="result-card__btn-hire" onClick={() => onHire && onHire(r)}>Hire Now</button>
+                                        <button className="result-card__btn-view" onClick={() => onViewProfile && onViewProfile(r)}>View Profile</button>
                                     </div>
 
                                 </li>
