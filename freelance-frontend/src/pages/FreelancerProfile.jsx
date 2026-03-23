@@ -95,7 +95,7 @@ function ProjectItem({ project }) {
 /* ────────────────────────────────────
    MAIN COMPONENT
 ──────────────────────────────────── */
-function FreelancerProfile({ freelancer: freelancerProp, freelancerId, onBack, onHire }) {
+function FreelancerProfile({ freelancer: freelancerProp, freelancerId, onBack, onHire, onViewContracts }) {
     /*
       Props:
         freelancerProp  — basic freelancer obj passed from parent (id, name, skills, matchPercentage)
@@ -112,22 +112,28 @@ function FreelancerProfile({ freelancer: freelancerProp, freelancerId, onBack, o
     const id = freelancerProp?.id ?? freelancerId;
 
     useEffect(() => {
-        if (!id) { setLoading(false); return; }
+        // If no id at all, just use the prop data directly
+        if (!id) {
+            setProfile(freelancerProp ?? null);
+            setLoading(false);
+            return;
+        }
+
         setLoading(true);
         setError("");
 
         fetch(`${API_BASE}/api/freelancers/${id}`)
             .then((res) => {
-                if (!res.ok) throw new Error(`Failed to load profile (${res.status})`);
+                if (!res.ok) throw new Error(`status ${res.status}`);
                 return res.json();
             })
             .then((data) => setProfile(data))
-            .catch((err) => {
-                // Fallback: use the basic prop data if API fails
+            .catch(() => {
+                // API not ready or failed — always fall back to prop data
                 if (freelancerProp) {
                     setProfile(freelancerProp);
                 } else {
-                    setError(err.message);
+                    setError("Could not load profile. Please try again.");
                 }
             })
             .finally(() => setLoading(false));
@@ -251,6 +257,18 @@ function FreelancerProfile({ freelancer: freelancerProp, freelancerId, onBack, o
                                 <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/>
                             </svg>
                             Save to Shortlist
+                        </button>
+                        <button
+                            className="profile-hero__btn-contracts"
+                            onClick={() => onViewContracts && onViewContracts()}
+                        >
+                            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                                <polyline points="14 2 14 8 20 8"/>
+                                <line x1="16" y1="13" x2="8" y2="13"/>
+                                <line x1="16" y1="17" x2="8" y2="17"/>
+                            </svg>
+                            My Contracts
                         </button>
                     </div>
                 </div>

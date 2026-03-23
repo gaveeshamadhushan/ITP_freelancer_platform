@@ -232,6 +232,29 @@
     background: #eff6ff;
 }
 
+.profile-hero__btn-contracts {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    background: #f0fdf4;
+    color: #15803d;
+    border: 1.5px solid #bbf7d0;
+    border-radius: 10px;
+    padding: 10px 16px;
+    font-size: 13px;
+    font-weight: 600;
+    font-family: 'DM Sans', sans-serif;
+    cursor: pointer;
+    transition: border-color 0.2s, color 0.2s, background 0.2s, box-shadow 0.2s;
+    white-space: nowrap;
+}
+
+.profile-hero__btn-contracts:hover {
+    background: #dcfce7;
+    border-color: #16a34a;
+    box-shadow: 0 2px 8px rgba(22,163,74,0.15);
+}
+
 /* ─────────────────────────────────────
    MAIN LAYOUT
 ───────────────────────────────────── */
