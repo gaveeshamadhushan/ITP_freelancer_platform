@@ -48,4 +48,30 @@ public class ContractService {
 
         return contractRepository.save(contract);
     }
+
+    public List<Contract> getAllContracts() {
+        return contractRepository.findAll();
+    }
+
+    public Contract getContractById(String id) {
+        return contractRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Contract not found"));
+    }
+
+    public List<Contract> getContractsByFreelancer(String freelanceId) {
+        return contractRepository.findByFreelanceId(freelanceId);
+    }
+
+    public List<Contract> getContractsByStatus(String status) {
+        return contractRepository.findByStatus(status);
+    }
+
+    public Contract updateContractStatus(String id, String status) {
+        return contractRepository.findById(id)
+                .map(contract -> {
+                    contract.setStatus("PENDING");
+                    return contractRepository.save(contract);
+                })
+                .orElseThrow(() -> new RuntimeException("Contract not found"));
+    }
 }
