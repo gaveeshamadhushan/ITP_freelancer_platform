@@ -457,6 +457,22 @@
     line-height: 1.6;
     margin: 0;
 }
+.contact-btn{
+    width: stretch;
+    align-items: center;
+    gap: 7px;
+    background: #f0fdf4;
+    color: #15803d;
+    border: 1.5px solid #bbf7d0;
+    border-radius: 10px;
+    padding: 10px 16px;
+    font-size: 13px;
+    font-weight: 600;
+    font-family: 'DM Sans', sans-serif;
+    cursor: pointer;
+    transition: border-color 0.2s, color 0.2s, background 0.2s, box-shadow 0.2s;
+    white-space: nowrap;
+}
 
 /* Protection card */
 .hire-protection-card {
