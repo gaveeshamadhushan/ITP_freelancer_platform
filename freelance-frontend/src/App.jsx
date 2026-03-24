@@ -55,6 +55,7 @@ function App() {
 
                 {page === "contracts" && (
                     <MyContracts
+                        onBack={handleBack}
                         onBrowseJobs={() => setPage("recommendations")}
                     />
                 )}
@@ -64,6 +65,10 @@ function App() {
                         freelancer={selectedFreelancer}
                         onBack={handleBack}
                         onViewProfile={(f) => handleViewProfile(f, "hire")}
+                        onViewContracts={() => {
+                            setPreviousPage("hire");
+                            setPage("contracts");
+                        }}
                     />
                 )}
 
@@ -72,7 +77,10 @@ function App() {
                         freelancer={selectedFreelancer}
                         onBack={handleBack}
                         onHire={(f) => handleHire(f, "profile")}
-                        onViewContracts={() => setPage("contracts")}
+                        onViewContracts={() => {
+                            setPreviousPage("profile");
+                            setPage("contracts");
+                        }}
                     />
                 )}
 

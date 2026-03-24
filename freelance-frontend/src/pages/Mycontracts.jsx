@@ -97,6 +97,7 @@ function ContractCard({ contract, onStatusUpdate }) {
     const freelancerName = contract.freelancerName ?? contract.freelanceId ?? "Unknown";
 
     return (
+
         <div className="contract-card">
 
             {/* Top: status badge + date */}
@@ -247,7 +248,7 @@ function Toast({ message, type }) {
 /* ─────────────────────────────────────
    MAIN PAGE
 ───────────────────────────────────── */
-function MyContracts({ onBrowseJobs }) {
+function MyContracts({ onBrowseJobs, onBack }) {
     const [contracts, setContracts] = useState([]);
     const [loading, setLoading]     = useState(true);
     const [error, setError]         = useState("");
@@ -332,6 +333,17 @@ function MyContracts({ onBrowseJobs }) {
 
     return (
         <div className="contracts-page">
+            <div className="hire-page__breadcrumb">
+                <button className="hire-page__breadcrumb-link" onClick={onBack}>
+                    History
+                </button>
+                <span className="hire-page__breadcrumb-sep">›</span>
+                <button className="hire-page__breadcrumb-link" onClick={onBack}>
+                    Hire Page
+                </button>
+                <span className="hire-page__breadcrumb-sep">›</span>
+                <span className="hire-page__breadcrumb-current">Contracts</span>
+            </div>
 
             {/* ── Header ── */}
             <div className="contracts-page__header">
