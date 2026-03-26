@@ -159,7 +159,7 @@ function HistoryCard({ item, index, onDelete, onHire }) {
 /* ══════════════════════════════════
    MAIN PAGE
 ══════════════════════════════════ */
-function HistoryPage({ onNewSearch, onHire }) {
+function HistoryPage({ onNewSearch, onHire, onViewDashboard }) {
     const [history, setHistory] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState("");
@@ -218,6 +218,9 @@ function HistoryPage({ onNewSearch, onHire }) {
                             <line x1="5" y1="12" x2="19" y2="12"/>
                         </svg>
                         New AI Search
+                    </button>
+                    <button className="history-btn-new" onClick={onViewDashboard}>
+                        Dashboard
                     </button>
                 </div>
             </div>

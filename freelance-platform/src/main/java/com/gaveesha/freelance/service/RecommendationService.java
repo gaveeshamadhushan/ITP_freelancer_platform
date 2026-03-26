@@ -9,6 +9,7 @@ import org.springframework.web.client.RestTemplate;
 
 import java.time.LocalDateTime;
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 public class RecommendationService {
@@ -97,5 +98,47 @@ public class RecommendationService {
         historyRepository.save(history);
 
         return finalResults;
+    }
+    public RecommendationAnalyticsDTO getAnalytics() {
+
+        List<RecommendationHistory> history = historyRepository.findAll();
+
+        int total = history.size();
+
+        double avgScore = history.stream()
+                .flatMap(h -> h.getRecommendations().stream())
+                .filter(r -> r.getMatchPercentage() != null)
+                .mapToDouble(RecommendationResult::getMatchPercentage)
+                .average()
+                .orElse(0);
+
+        // Round to 1 decimal place
+        avgScore = Math.round(avgScore * 10.0) / 10.0;
+
+
+        Map<String, Long> grouped = history.stream()
+                .filter(h -> h.getFreelancerName() != null)
+                .collect(Collectors.groupingBy(
+                        RecommendationHistory::getFreelancerName,
+                        Collectors.counting()
+                ));
+
+        List<TopFreelancerDTO> topList = grouped.entrySet().stream()
+                .sorted((a, b) -> Long.compare(b.getValue(), a.getValue()))
+                .limit(5)
+                .map(e -> {
+                    TopFreelancerDTO dto = new TopFreelancerDTO();
+                    dto.setName(e.getKey());
+                    dto.setCount(e.getValue().intValue());
+                    return dto;
+                })
+                .toList();
+
+        RecommendationAnalyticsDTO dto = new RecommendationAnalyticsDTO();
+        dto.setTotalRecommendations(total);
+        dto.setAverageMatchScore(avgScore);
+        dto.setTopFreelancers(topList);
+
+        return dto;
     }
 }

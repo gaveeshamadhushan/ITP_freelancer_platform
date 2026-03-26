@@ -15,6 +15,9 @@ public class RecommendationHistory {
     private String jobDescription;
     private LocalDateTime createdAt;
 
+    private double matchPercentage;
+    private String freelancerName;
+
     private List<RecommendationResult> recommendations;
 
     // getters & setters
@@ -49,5 +52,13 @@ public class RecommendationHistory {
 
     public void setRecommendations(List<RecommendationResult> recommendations) {
         this.recommendations = recommendations;
+    }
+
+    public double getMatchPercentage() {
+        return matchPercentage;
+    }
+
+    public String getFreelancerName() {
+        return freelancerName;
     }
 }
