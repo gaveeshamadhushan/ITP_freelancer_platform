@@ -34,4 +34,8 @@ public class RecommendationController {
                 request.getJobDescription()
         );
     }
+    @GetMapping("/analytics")
+    public RecommendationAnalyticsDTO getAnalytics() {
+        return recommendationService.getAnalytics();
+    }
 }

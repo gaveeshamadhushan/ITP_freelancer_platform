@@ -1,4 +1,4 @@
-/* ===== RecommendationPage.css ===== */
+
 @import url('https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@400;500;600&display=swap');
 
 /* ─────────────────────────────────────
@@ -45,9 +45,7 @@
     font-weight: 400;
 }
 
-/* ─────────────────────────────────────
-   SEARCH CARD
-───────────────────────────────────── */
+/* SEARCH CARD */
 .recommendation-search-card {
     background: #ffffff;
     border-radius: 20px;

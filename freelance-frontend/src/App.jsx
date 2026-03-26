@@ -1,5 +1,6 @@
 import { useState } from "react";
 import FreelancerPage from "./pages/FreelancerPage";
+import DashboardPage from "./pages/DashboardPage";
 import RecommendationPage from "./pages/RecommendationPage";
 import HistoryPage from "./pages/HistoryPage";
 import HireFreelancer from "./pages/HireFreelancer";
@@ -37,6 +38,13 @@ function App() {
         <div className="app">
             <main className="app__content">
 
+                {page === "dashboard" && (
+                    <DashboardPage
+                        onHire={(f) => handleHire(f, "dashboard")}
+                        onViewProfile={(f) => handleViewProfile(f, "dashboard")}
+                    />
+                )}
+
                 {page === "recommendations" && (
                     <RecommendationPage
                         onViewHistory={() => setPage("history")}
@@ -50,6 +58,10 @@ function App() {
                         onNewSearch={() => setPage("recommendations")}
                         onHire={(f) => handleHire(f, "history")}
                         onViewProfile={(f) => handleViewProfile(f, "history")}
+                        onViewDashboard={() => {
+                            setPreviousPage("history");
+                            setPage("dashboard");
+                        }}
                     />
                 )}
 
